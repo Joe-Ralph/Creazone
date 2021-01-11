@@ -4,22 +4,23 @@
 	<title>Creazone</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/uikit.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="./css/uikit.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <script src="./js/uikit.min.js"></script>
+    <script src="./js/uikit-icons.min.js"></script>
+    <link rel="manifest" href="./manifest.json">
 </head>
 <body>
 	
 	<center>
-        <main>
-            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" id="container">
+        <h1>Creazone</h1>
+        <main class="uk-padding">
+            <div class="uk-card uk-card-default uk-card-body" id="container">
                 <h3 class="uk-card-title" id="topic"></h3>
             </div>
         </main>
         <br>
-        <button class="uk-button uk-button-primary" id="btn">New One!</button>
+        <button class="uk-button uk-button-secondary" id="btn">New One!</button>
     </center>
 </form>
 <script type="text/javascript">
@@ -32,11 +33,11 @@ let btn = document.querySelector('#btn');
     });
      
 async function updateJoke(){
-    const res = await fetch("https://sv443.net/jokeapi/category/any");
-    joke = await res.json();
+    const res = await fetch("https://official-joke-api.appspot.com/jokes/programming/random");
+    [joke] = await res.json();
     console.log(joke);
     let div = document.createElement('p');
-    div.innerHTML = ' '+ (!('joke' in joke)?joke.setup + '\n ' +joke.delivery : joke.joke);
+    div.innerHTML = ' '+ joke.setup + '<br/>' +joke.punchline;
     topic.appendChild(div);
 }
 
